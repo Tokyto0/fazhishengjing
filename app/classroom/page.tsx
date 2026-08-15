@@ -1,0 +1,23 @@
+import type { Metadata } from "next";
+import { ArrowRight, BookOpenText, Download, FileText, GraduationCap, LockKeyhole, PlayCircle } from "lucide-react";
+import Link from "next/link";
+import { PageHero } from "@/components/page-hero";
+import { PageTransition } from "@/components/motion/page-transition";
+import { Reveal } from "@/components/motion/reveal";
+import { SectionHeading } from "@/components/section-heading";
+import { StatusPill } from "@/components/status-pill";
+import { classroomResources } from "@/content";
+
+export const metadata: Metadata = { title: "普法云课堂", description: "在线阅读知识产权课程，预览并下载实务手册、政策文件和调研报告。" };
+const learningPath = ["认识权利", "识别风险", "建立流程", "形成治理"];
+
+export default function ClassroomPage() {
+  return (
+    <PageTransition>
+      <PageHero eyebrow="Public legal classroom" title="让法律知识更近一点，也更实用一点" description="用短课程、实务手册、案例解析和政策资料，帮助不同基础的学习者找到清晰路径。" aside={<div className="rounded-2xl border border-white bg-white/80 p-6 shadow-soft backdrop-blur"><GraduationCap className="h-6 w-6 text-signal" /><p className="mt-4 font-display text-2xl font-bold text-ocean">开放学习</p><p className="mt-1 text-sm text-slate-500">无需注册 · 免费阅读</p></div>} />
+      <section className="border-b border-slate-200 bg-white py-10"><div className="container-page"><ol className="grid gap-4 sm:grid-cols-4">{learningPath.map((item, index) => <li key={item} className="flex items-center gap-3 sm:justify-center"><span className="grid h-8 w-8 place-items-center rounded-full bg-ocean text-xs font-bold text-white">{index + 1}</span><span className="font-display font-bold text-ink">{item}</span>{index < learningPath.length - 1 && <ArrowRight className="ml-auto hidden h-4 w-4 text-slate-300 sm:block" />}</li>)}</ol></div></section>
+      <section className="section-space bg-mist"><div className="container-page"><Reveal><SectionHeading eyebrow="Learning resources" title="选择一份适合你的学习资料" description="文章可直接在线阅读；PDF 资源接入真实文件后，将自动显示预览与下载入口。" /></Reveal><div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{classroomResources.map((resource, index) => { const available = resource.format === "文章" ? Boolean(resource.articleSlug) : Boolean(resource.resourceUrl); const Icon = resource.kind === "课程" ? PlayCircle : resource.kind === "手册" ? BookOpenText : FileText; const inner = <><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-signal"><Icon className="h-5 w-5" /></span><StatusPill available={available}>{available ? "可在线学习" : "资料待接入"}</StatusPill></div><div className="mt-7 flex items-center gap-2 text-xs text-slate-400"><span>{resource.kind}</span><span>·</span><span>{resource.format}</span><span>·</span><span>{resource.level}</span></div><h2 className="mt-3 font-display text-2xl font-bold leading-tight text-ink">{resource.title}</h2><p className="mt-4 flex-1 text-sm leading-7 text-slate-600">{resource.summary}</p><div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-semibold"><span className="text-slate-400">{resource.duration}</span><span className={available ? "text-signal" : "text-slate-400"}>{available ? (resource.format === "PDF" ? <span className="flex items-center gap-1">预览 / 下载 <Download className="h-4 w-4" /></span> : <span className="flex items-center gap-1">开始阅读 <ArrowRight className="h-4 w-4" /></span>) : <span className="flex items-center gap-1"><LockKeyhole className="h-4 w-4" />即将开放</span>}</span></div></>; return <Reveal key={resource.slug} delay={index * .04}>{available ? <Link href={resource.articleSlug ? `/knowledge/${resource.articleSlug}` : resource.resourceUrl!} className="group flex h-full min-h-[345px] flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-soft">{inner}</Link> : <article className="flex h-full min-h-[345px] flex-col rounded-2xl border border-slate-200 bg-white p-6 opacity-85">{inner}</article>}</Reveal>; })}</div></div></section>
+      <section className="section-space bg-white"><div className="container-page"><Reveal><div className="grid gap-8 rounded-3xl bg-ink p-8 text-white sm:p-12 lg:grid-cols-[1fr_auto] lg:items-center"><div><p className="eyebrow text-blue-300">Knowledge to action</p><h2 className="mt-4 font-display text-3xl font-bold">学完之后，用一份清单开始行动</h2><p className="mt-4 max-w-2xl leading-7 text-slate-300">知识库提供流程化指南；AI 问答可以先帮你定位相关资料和需要进一步确认的事实。</p></div><Link href="/knowledge" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-ocean">进入知识库 <ArrowRight className="h-4 w-4" /></Link></div></Reveal></div></section>
+    </PageTransition>
+  );
+}

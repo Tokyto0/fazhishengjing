@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071426"/><stop offset="1" stop-color="#0b3261"/></linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#1687ff" stroke-opacity=".13"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="1010" cy="100" r="330" fill="#1687ff" opacity=".12"/>
+  <circle cx="1080" cy="510" r="210" fill="#20c997" opacity=".12"/>
+  <text x="95" y="215" fill="#76baff" font-size="28" font-family="sans-serif" letter-spacing="8">LAW · INTELLIGENCE · HABITAT</text>
+  <text x="90" y="355" fill="white" font-size="106" font-family="serif" font-weight="700">法智生境</text>
+  <text x="95" y="435" fill="#d8e8fa" font-size="34" font-family="sans-serif">社会实践成果展示与知识服务平台</text>
+  <path d="M95 500h230" stroke="#20c997" stroke-width="6" stroke-linecap="round"/>
+</svg>
