@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/footer";
+import { JsonLd } from "@/components/json-ld";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import { Navbar } from "@/components/navbar";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -15,6 +17,15 @@ export const metadata: Metadata = {
   keywords: ["社会实践", "知识产权", "农文旅", "人工智能", "乡村振兴", "普法"],
   authors: [{ name: "法智生境社会实践团队" }],
   creator: "法智生境社会实践团队",
+  applicationName: siteConfig.name,
+  category: "education",
+  classification: "高校社会实践成果与知识产权公益普法",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "default",
+  },
   openGraph: {
     type: "website",
     locale: "zh_CN",
@@ -43,10 +54,13 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="zh-CN">
       <body>
+        <JsonLd />
         <a href="#main-content" className="sr-only z-[100] bg-white p-3 focus:not-sr-only focus:fixed focus:left-3 focus:top-3">跳转到主要内容</a>
-        <Navbar />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <main id="main-content">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

@@ -43,7 +43,7 @@ export const classroomResources: ClassroomResource[] = [
   },
   {
     slug: "fieldwork-report-2026",
-    title: "2026 四省调研综合报告",
+    title: "2026 五省区调研综合报告",
     kind: "报告",
     format: "PDF",
     level: "进阶",

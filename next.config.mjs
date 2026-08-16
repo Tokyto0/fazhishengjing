@@ -3,8 +3,10 @@ const nextConfig = {
   output: "standalone",
   compress: true,
   poweredByHeader: false,
+  allowedDevOrigins: ["127.0.0.1", "localhost", "192.168.56.1"],
   images: {
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 86400,
   },
   async headers() {
     return [

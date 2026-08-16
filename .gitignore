@@ -10,10 +10,10 @@
 # production
 /build
 
-# local configuration
-.env
-.env.local
-.env.*.local
+# local and production secrets
+.env*
+!.env.example
+!.env.production.example
 
 # logs and editor files
 npm-debug.log*

@@ -5,9 +5,69 @@ import { PageHero } from "@/components/page-hero";
 import { PageTransition } from "@/components/motion/page-transition";
 import { Reveal } from "@/components/motion/reveal";
 
-export const metadata: Metadata = { title: "关于项目", description: "了解法智生境社会实践项目的平台定位、工作方法与长期建设愿景。" };
+export const metadata: Metadata = {
+  title: "关于项目",
+  description: "了解法智生境社会实践项目的平台定位、工作方法与长期建设愿景。",
+};
+
+const values = [
+  { icon: Scale, title: "法律专业性", text: "以事实为基础、以规范为依据，清楚区分普法知识与个案意见。" },
+  { icon: Sparkles, title: "科技创新性", text: "审慎使用 AI 和数字工具，让技术服务于知识可信与公共可及。" },
+  { icon: HeartHandshake, title: "实践公共性", text: "尊重当地知识与多元主体，让成果回到现场、回应真实需要。" },
+  { icon: Database, title: "长期可维护", text: "用结构化内容和开放架构持续保存资料，而不是一次性的展示页面。" },
+];
 
 export default function AboutPage() {
-  const values = [{ icon: Scale, title: "法律专业性", text: "以事实为基础、以规范为依据，清楚区分普法知识与个案意见。" }, { icon: Sparkles, title: "科技创新性", text: "审慎使用 AI 和数字工具，让技术服务于知识可信与公共可及。" }, { icon: HeartHandshake, title: "实践公共性", text: "尊重当地知识与多元主体，让成果回到现场、回应真实需要。" }, { icon: Database, title: "长期可维护", text: "用结构化内容和开放架构持续保存资料，而不是一次性的展示页面。" }];
-  return <PageTransition><PageHero eyebrow="About the project" title="一次实践，如何成为一份长期生长的公共知识" description="“法智生境”既是成果展示窗口，也是持续更新的知识服务平台。我们希望把现场观察、专业分析与公众表达连接起来。" /><section className="section-space bg-white"><div className="container-page grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><Reveal><p className="eyebrow">Our mission</p><h2 className="mt-4 font-display text-4xl font-bold leading-tight">以法为尺<br />以智赋能<br />为乡土创新留档</h2></Reveal><Reveal delay={.08}><div className="space-y-6 text-lg leading-9 text-slate-600"><p>团队围绕农文旅融合、知识产权保护与人工智能赋能开展跨区域调研，将实践过程转化为案例、课程、知识文章和政策建议。</p><p>平台不设置用户注册，以开放阅读为主；初期采用代码化静态内容，保证轻量、安全、易维护，并为未来的内容管理和向量知识库保留接口。</p></div></Reveal></div></section><section className="section-space bg-mist"><div className="container-page grid gap-5 md:grid-cols-2">{values.map((value, index) => { const Icon = value.icon; return <Reveal key={value.title} delay={index * .05}><div className="h-full rounded-2xl border border-slate-200 bg-white p-7"><span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-signal"><Icon className="h-5 w-5" /></span><h3 className="mt-6 font-display text-2xl font-bold">{value.title}</h3><p className="mt-3 leading-7 text-slate-600">{value.text}</p></div></Reveal>; })}</div></section><section className="section-space bg-white"><Reveal className="container-page"><div className="rounded-3xl bg-ocean p-9 text-white sm:p-14"><BookOpenCheck className="h-8 w-8 text-mint" /><h2 className="mt-6 font-display text-3xl font-bold">从这里继续探索</h2><p className="mt-4 max-w-2xl text-lg leading-8 text-blue-100">阅读四省调研档案，或从知识库中找到一份马上可以使用的指南。</p><div className="mt-8 flex flex-wrap gap-3"><Link href="/research" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-ocean">查看调研纪实 <ArrowRight className="h-4 w-4" /></Link><Link href="/knowledge" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white">进入知识库</Link></div></div></Reveal></section></PageTransition>;
+  return (
+    <PageTransition>
+      <PageHero
+        eyebrow="About the project"
+        title="一次实践，如何成为一份长期生长的公共知识"
+        description="“法智生境”既是成果展示窗口，也是持续更新的知识服务平台。我们希望把现场观察、专业分析与公众表达连接起来。"
+      />
+      <section className="section-space bg-white">
+        <div className="container-page grid gap-14 lg:grid-cols-[.8fr_1.2fr]">
+          <Reveal>
+            <p className="eyebrow">Our mission</p>
+            <h2 className="mt-4 font-display text-4xl font-bold leading-tight">以法为尺<br />以智赋能<br />为乡土创新留档</h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="space-y-6 text-lg leading-9 text-slate-600">
+              <p>团队围绕农文旅融合、知识产权保护与人工智能赋能，在山东、广东、湖南、宁夏和黑龙江开展跨区域调研，将实践过程转化为案例、课程、知识文章和政策建议。</p>
+              <p>平台不设置用户注册，以开放阅读为主；初期采用代码化静态内容，保证轻量、安全、易维护，并为未来的内容管理和向量知识库保留接口。</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+      <section className="section-space bg-mist">
+        <div className="container-page grid gap-5 md:grid-cols-2">
+          {values.map((value, index) => {
+            const Icon = value.icon;
+            return (
+              <Reveal key={value.title} delay={index * 0.05}>
+                <div className="h-full rounded-2xl border border-slate-200 bg-white p-7">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-signal"><Icon className="h-5 w-5" /></span>
+                  <h3 className="mt-6 font-display text-2xl font-bold">{value.title}</h3>
+                  <p className="mt-3 leading-7 text-slate-600">{value.text}</p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+      <section className="section-space bg-white">
+        <Reveal className="container-page">
+          <div className="rounded-3xl bg-ocean p-9 text-white sm:p-14">
+            <BookOpenCheck className="h-8 w-8 text-mint" />
+            <h2 className="mt-6 font-display text-3xl font-bold">从这里继续探索</h2>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-blue-100">阅读五省区调研档案，或从知识库中找到一份马上可以使用的指南。</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/research" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-ocean">查看调研纪实 <ArrowRight className="h-4 w-4" /></Link>
+              <Link href="/knowledge" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white">进入知识库</Link>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+    </PageTransition>
+  );
 }

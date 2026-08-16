@@ -8,14 +8,14 @@ import { SectionHeading } from "@/components/section-heading";
 import { researchPrinciples, researchStops } from "@/content";
 import { formatDate } from "@/lib/utils";
 
-export const metadata: Metadata = { title: "四省调研纪实", description: "以交互地图与时间线完整记录法智生境团队四省调研实践过程。" };
+export const metadata: Metadata = { title: "五省区调研纪实", description: "以交互地图与时间线记录法智生境团队在山东、广东、湖南、宁夏与黑龙江的调研实践过程。" };
 
 export default function ResearchPage() {
   return (
     <PageTransition>
-      <PageHero eyebrow="Research journey" title="把每一次抵达，留在可追溯的实践档案里" description="从问题发现、现场访谈到成果转化，以地图和时间线完整记录四省调研过程。" aside={<div className="grid grid-cols-2 gap-3"><div className="rounded-2xl border border-white bg-white/80 p-5 shadow-soft backdrop-blur"><p className="font-display text-3xl font-bold text-ocean">4</p><p className="mt-1 text-xs text-slate-500">调研省份</p></div><div className="rounded-2xl border border-white bg-white/80 p-5 shadow-soft backdrop-blur"><p className="font-display text-3xl font-bold text-ocean">12</p><p className="mt-1 text-xs text-slate-500">实践点位</p></div></div>} />
+      <PageHero eyebrow="Research journey" title="把每一次抵达，留在可追溯的实践档案里" description="从问题发现、现场访谈到成果转化，以地图和时间线记录五省区调研过程。" aside={<div className="grid grid-cols-2 gap-3"><div className="rounded-2xl border border-white bg-white/80 p-5 shadow-soft backdrop-blur"><p className="font-display text-3xl font-bold text-ocean">{researchStops.length}</p><p className="mt-1 text-xs text-slate-500">调研省区</p></div><div className="rounded-2xl border border-white bg-white/80 p-5 shadow-soft backdrop-blur"><p className="font-display text-3xl font-bold text-ocean">12</p><p className="mt-1 text-xs text-slate-500">实践点位</p></div></div>} />
 
-      <section className="section-space bg-white"><div className="container-page"><Reveal><ChinaMap /></Reveal><p className="mt-4 text-center text-xs text-slate-400">地图为交互示意；正式发布前请依据真实调研资料校准省份、点位与时间。</p></div></section>
+      <section id="research-map" className="section-space scroll-mt-20 bg-white"><div className="container-page"><Reveal><ChinaMap /></Reveal><p className="mt-4 text-center text-xs text-slate-400">地图按实际调研省级范围标注；具体城市、点位与时间将在原始日志核验后补充。</p></div></section>
 
       <section className="section-space bg-mist">
         <div className="container-page">
@@ -28,7 +28,7 @@ export default function ResearchPage() {
                   <article className={`relative grid lg:grid-cols-2 lg:gap-16 ${index % 2 ? "" : "lg:[&>div:first-child]:col-start-2"}`}>
                     <span className="absolute left-[12px] top-7 z-10 grid h-4 w-4 place-items-center rounded-full border-4 border-mist bg-signal ring-2 ring-blue-200 lg:left-1/2 lg:-translate-x-1/2" />
                     <div className={`ml-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:ml-0 ${index % 2 ? "lg:col-start-2" : "lg:row-start-1"}`}>
-                      <div className="flex items-center justify-between text-xs"><span className="font-semibold text-signal">{stop.province} · {stop.city}</span><time className="text-slate-400">{formatDate(stop.date)}</time></div>
+                      <div className="flex items-center justify-between gap-4 text-xs"><span className="font-semibold text-signal">{stop.province} · {stop.city}</span><time className="shrink-0 text-slate-400">{stop.date ? formatDate(stop.date) : "时间待补充"}</time></div>
                       <h3 className="mt-4 font-display text-2xl font-bold text-ink">{stop.title}</h3>
                       <p className="mt-3 leading-7 text-slate-600">{stop.summary}</p>
                       <div className="mt-5 flex flex-wrap gap-2">{stop.activities.map((activity) => <span key={activity} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">{activity}</span>)}</div>

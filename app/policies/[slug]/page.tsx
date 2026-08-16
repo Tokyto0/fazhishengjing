@@ -1,15 +1,81 @@
 import type { Metadata } from "next";
-import { ArrowLeft, CheckCircle2, CircleDot, Target } from "lucide-react";
+import { ArrowLeft, BookOpenText } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageTransition } from "@/components/motion/page-transition";
-import { policyProposals } from "@/content";
-import { formatDate } from "@/lib/utils";
+import { policySections } from "@/content";
 
-export function generateStaticParams() { return policyProposals.map((proposal) => ({ slug: proposal.slug })); }
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const item = policyProposals.find((proposal) => proposal.slug === slug); return item ? { title: item.title, description: item.summary } : {}; }
+export function generateStaticParams() {
+  return policySections.map((section) => ({ slug: section.slug }));
+}
 
-export default async function PolicyDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const item = policyProposals.find((proposal) => proposal.slug === slug); if (!item) notFound();
-  return <PageTransition><article className="bg-white pt-[76px]"><header className="bg-mist"><div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20"><Link href="/policies" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-signal"><ArrowLeft className="h-4 w-4" />返回政策建议库</Link><div className="mt-9 flex flex-wrap items-center gap-3 text-xs"><span className="rounded-full bg-blue-100 px-3 py-1.5 font-semibold text-blue-700">{item.category}</span><span className="rounded-full bg-white px-3 py-1.5 text-slate-500">{item.status}</span><span className="text-slate-400">{formatDate(item.publishedAt)}</span></div><h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">{item.title}</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{item.summary}</p></div></header><div className="mx-auto max-w-5xl space-y-14 px-5 py-16 sm:px-8 lg:py-20"><section><div className="mb-5 flex items-center gap-3"><CircleDot className="h-6 w-6 text-signal" /><h2 className="font-display text-2xl font-bold">问题观察</h2></div><p className="rounded-2xl border-l-4 border-signal bg-blue-50 p-6 text-base leading-8 text-ocean">{item.issue}</p></section><section><div className="mb-6 flex items-center gap-3"><Target className="h-6 w-6 text-signal" /><h2 className="font-display text-2xl font-bold">政策建议</h2></div><ol className="space-y-4">{item.recommendations.map((recommendation, index) => <li key={recommendation} className="grid gap-4 rounded-2xl border border-slate-200 p-6 sm:grid-cols-[42px_1fr]"><span className="grid h-9 w-9 place-items-center rounded-full bg-ocean text-sm font-bold text-white">{index + 1}</span><p className="leading-8 text-slate-600">{recommendation}</p></li>)}</ol></section><section><div className="mb-6 flex items-center gap-3"><CheckCircle2 className="h-6 w-6 text-mint" /><h2 className="font-display text-2xl font-bold">预期影响</h2></div><div className="grid gap-4 sm:grid-cols-3">{item.expectedImpact.map((impact) => <div key={impact} className="rounded-2xl bg-mist p-6 text-center font-display text-lg font-bold text-ocean">{impact}</div>)}</div></section><p className="border-t border-slate-200 pt-6 text-xs leading-6 text-slate-400">本建议为社会实践阶段性研究成果，后续将结合专家意见、政策变化与基层反馈持续完善。</p></div></article></PageTransition>;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const section = policySections.find((item) => item.slug === slug);
+
+  return section
+    ? {
+        title: `${section.title}｜政策建议`,
+        description: section.paragraphs[0],
+      }
+    : {};
+}
+
+export default async function PolicyDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const section = policySections.find((item) => item.slug === slug);
+
+  if (!section) {
+    notFound();
+  }
+
+  return (
+    <PageTransition>
+      <article className="bg-white pt-[76px]">
+        <header className="relative overflow-hidden border-b border-slate-200 bg-mist">
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.13),transparent_32%)]"
+            aria-hidden="true"
+          />
+          <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
+            <Link
+              href="/policies"
+              className="relative inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              返回政策建议
+            </Link>
+            <div className="relative mt-9 flex items-center gap-3 text-sm font-semibold text-signal">
+              <BookOpenText className="h-5 w-5" aria-hidden="true" />
+              <span>政策建议 {String(section.order).padStart(2, "0")}</span>
+            </div>
+            <h1 className="relative mt-5 text-balance font-display text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
+              {section.title}
+            </h1>
+          </div>
+        </header>
+
+        <div className="mx-auto min-w-0 max-w-4xl overflow-hidden px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
+          <div className="space-y-6 sm:space-y-7">
+            {section.paragraphs.map((paragraph, index) => (
+              <p
+                key={index}
+                className="break-words whitespace-pre-wrap text-justify text-base leading-8 text-slate-700 [overflow-wrap:anywhere] sm:text-lg sm:leading-9"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </div>
+      </article>
+    </PageTransition>
+  );
 }

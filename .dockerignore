@@ -5,5 +5,6 @@ node_modules
 *.log
 .env*
 !.env.example
+!.env.production.example
 README.md
 DEPLOYMENT.md

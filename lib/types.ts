@@ -3,8 +3,9 @@ export type Accent = "blue" | "green" | "gold" | "violet";
 export interface ResearchStop {
   id: string;
   province: string;
+  mapLabel: string;
   city: string;
-  date: string;
+  date?: string;
   title: string;
   focus: string;
   summary: string;
@@ -14,21 +15,17 @@ export interface ResearchStop {
   accent: Accent;
 }
 
-export interface CaseStudy {
+export type CaseContentBlock =
+  | { kind: "paragraph" | "subheading"; text: string }
+  | { kind: "table"; rows: string[][] };
+
+export interface CaseSection {
   slug: string;
   title: string;
-  category: string;
-  region: string;
-  year: string;
-  summary: string;
-  background: string;
-  legalIssue: string;
-  findings: string[];
-  solution: string[];
-  significance: string;
-  laws: string[];
-  tags: string[];
-  featured?: boolean;
+  blocks: CaseContentBlock[];
+  group: number;
+  order: number;
+  groupHeading?: string;
 }
 
 export interface KnowledgeArticle {
@@ -56,17 +53,12 @@ export interface ClassroomResource {
   resourceUrl?: string;
 }
 
-export interface PolicyProposal {
+export interface PolicySection {
   slug: string;
   title: string;
-  category: string;
-  level: string;
-  summary: string;
-  issue: string;
-  recommendations: string[];
-  expectedImpact: string[];
-  status: "研究中" | "已形成" | "持续跟踪";
-  publishedAt: string;
+  paragraphs: string[];
+  group: number;
+  order: number;
 }
 
 export interface TeamMember {

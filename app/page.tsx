@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   ArrowRight,
   BookOpenText,
-  Bot,
   BriefcaseBusiness,
   ChevronRight,
   FileText,
@@ -17,7 +16,7 @@ import { Counter } from "@/components/motion/counter";
 import { Reveal } from "@/components/motion/reveal";
 import { PageTransition } from "@/components/motion/page-transition";
 import { SectionHeading } from "@/components/section-heading";
-import { cases, researchStops } from "@/content";
+import { caseSections, researchStops } from "@/content";
 import { homeStats, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 const entries = [
-  { href: "/research", title: "四省调研纪实", description: "在地图与时间线中回到实践现场", icon: MapPinned, number: "01", color: "bg-blue-50 text-blue-700" },
+  { href: "/research", title: "五省区调研纪实", description: "在地图与时间线中回到实践现场", icon: MapPinned, number: "01", color: "bg-blue-50 text-blue-700" },
   { href: "/cases", title: "典型案例库", description: "从真实问题提炼可复用的解决路径", icon: BriefcaseBusiness, number: "02", color: "bg-emerald-50 text-emerald-700" },
   { href: "/classroom", title: "普法云课堂", description: "让专业法律知识清楚、好懂、可获得", icon: BookOpenText, number: "03", color: "bg-amber-50 text-amber-700" },
   { href: "/knowledge", title: "IP 保护知识库", description: "分类检索流程、法条、案例与研究", icon: Scale, number: "04", color: "bg-violet-50 text-violet-700" },
@@ -34,7 +33,7 @@ const entries = [
 ];
 
 export default function HomePage() {
-  const featuredCases = cases.filter((item) => item.featured).slice(0, 3);
+  const featuredCases = caseSections.slice(0, 3);
 
   return (
     <PageTransition>
@@ -64,7 +63,7 @@ export default function HomePage() {
               <div className="flex -space-x-2" aria-hidden="true">
                 {["法", "智", "农", "旅"].map((item, index) => <span key={item} className="grid h-8 w-8 place-items-center rounded-full border-2 border-white bg-ocean text-xs text-white" style={{ opacity: 1 - index * 0.12 }}>{item}</span>)}
               </div>
-              <span>四省联动 · 多学科协作 · 持续归档</span>
+              <span>五地联动 · 多学科协作 · 持续归档</span>
             </div>
           </Reveal>
           <Reveal delay={0.12} className="hidden lg:block"><HeroVisual /></Reveal>
@@ -114,7 +113,7 @@ export default function HomePage() {
       <section className="section-space overflow-hidden bg-ink text-white">
         <div className="container-page grid items-center gap-14 lg:grid-cols-[.8fr_1.2fr]">
           <Reveal>
-            <SectionHeading eyebrow="Fieldwork archive" title="四省，四个切面，一条共同的问题脉络" description="团队进入合作社、非遗工坊、文旅园区与内容生产现场，追踪知识产权如何真正参与产业发展。" light />
+            <SectionHeading eyebrow="Fieldwork archive" title="五省区，五种现场，一条共同的问题脉络" description="团队跨越山东、广东、湖南、宁夏与黑龙江，追踪知识产权如何真正参与农文旅融合与乡村产业发展。" light />
             <Link href="/research" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-mint">查看完整调研时间线 <ArrowRight className="h-4 w-4" /></Link>
           </Reveal>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -141,33 +140,14 @@ export default function HomePage() {
             {featuredCases.map((item, index) => (
               <Reveal key={item.slug} delay={index * 0.06}>
                 <Link href={`/cases/${item.slug}`} className="group flex min-h-[340px] flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft">
-                  <div className="flex items-center justify-between"><span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">{item.category}</span><span className="text-xs text-slate-400">{item.region} · {item.year}</span></div>
+                  <div className="flex items-center justify-between"><span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">案例专题</span><span className="font-mono text-xs text-slate-400">{String(item.order).padStart(2, "0")}</span></div>
                   <h3 className="mt-8 text-balance font-display text-2xl font-bold leading-9 text-ink transition group-hover:text-signal">{item.title}</h3>
-                  <p className="mt-4 flex-1 leading-7 text-slate-500">{item.summary}</p>
+                  <div className="flex-1" />
                   <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-semibold text-ocean"><span>查看案例分析</span><ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></div>
                 </Link>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section-space bg-white">
-        <div className="container-page">
-          <Reveal>
-            <div className="relative overflow-hidden rounded-[28px] bg-ocean px-7 py-12 text-white sm:px-12 lg:px-16 lg:py-16">
-              <div className="absolute inset-0 bg-grid bg-[length:42px_42px] opacity-20" />
-              <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-signal/30 blur-3xl" />
-              <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
-                <div className="max-w-3xl">
-                  <Bot className="mb-6 h-9 w-9 text-mint" />
-                  <h2 className="font-display text-3xl font-bold sm:text-4xl">有一个具体的知识产权问题？</h2>
-                  <p className="mt-4 text-lg leading-8 text-blue-100">让 AI 先从平台资料中检索依据，再给出带来源的回答。重要事项仍建议向专业人士咨询。</p>
-                </div>
-                <Link href="/ai" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-7 font-semibold text-ocean transition hover:-translate-y-0.5 hover:shadow-xl">开始提问 <ArrowRight className="h-4 w-4" /></Link>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 

@@ -6,7 +6,9 @@ import type { ReactNode } from "react";
 export function PageTransition({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      // Keep server-rendered content visible. A fully transparent initial
+      // state can look like a blank page while JavaScript is delayed.
+      initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
     >

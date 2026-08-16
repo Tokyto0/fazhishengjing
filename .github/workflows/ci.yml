@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, "codex/**"]
+    branches: ["codex/**"]
   pull_request:
 
 permissions:
@@ -29,4 +29,4 @@ jobs:
       - name: Production build
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://fazhi.example.edu.cn
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000

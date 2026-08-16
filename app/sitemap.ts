@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
-import { cases, knowledgeArticles, policyProposals } from "@/content";
+import { caseSections, knowledgeArticles, policySections } from "@/content";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["", "/research", "/cases", "/team", "/classroom", "/knowledge", "/ai", "/policies", "/about"];
+  const paths = ["", "/research", "/cases", "/team", "/classroom", "/knowledge", "/policies", "/about"];
   const dynamic = [
-    ...cases.map((item) => `/cases/${item.slug}`),
+    ...caseSections.map((item) => `/cases/${item.slug}`),
     ...knowledgeArticles.map((item) => `/knowledge/${item.slug}`),
-    ...policyProposals.map((item) => `/policies/${item.slug}`),
+    ...policySections.map((item) => `/policies/${item.slug}`),
   ];
   return [...paths, ...dynamic].map((path) => ({
     url: `${siteConfig.url}${path}`,
