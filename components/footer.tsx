@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
 import { navigation, siteConfig } from "@/lib/site";
@@ -32,8 +32,7 @@ export function Footer() {
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">联系与共建</p>
             <div className="space-y-4 text-sm text-slate-300">
-              <p className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-mint" />高校社会实践项目组</p>
-              <a href="mailto:contact@example.edu.cn" className="flex gap-3 transition hover:text-white"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-mint" />contact@example.edu.cn</a>
+              <p className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-mint" />“三晖同尘”实践团</p>
               <Link href="/about" className="inline-flex items-center gap-1 text-white">了解项目 <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
           </div>

@@ -44,11 +44,13 @@ export interface KnowledgeArticle {
 export interface ClassroomResource {
   slug: string;
   title: string;
-  kind: "课程" | "手册" | "报告" | "政策文件";
+  kind: "课程" | "手册" | "报告" | "政策文件" | "论文";
   format: "文章" | "PDF";
-  level: "入门" | "进阶" | "实务";
+  level: "入门" | "进阶" | "实务" | "研究";
   summary: string;
   duration: string;
+  author?: string;
+  theme?: string;
   articleSlug?: string;
   resourceUrl?: string;
 }
