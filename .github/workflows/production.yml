@@ -1,4 +1,4 @@
-name: Production pipeline
+name: Deploy GitHub Pages
 
 on:
   push:
@@ -6,98 +6,54 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: production
+  group: github-pages
   cancel-in-progress: false
 
 permissions:
   contents: read
-  packages: write
+  pages: write
+  id-token: write
 
 jobs:
-  quality:
-    name: Install, verify and build
+  deploy:
+    name: Build and deploy static site
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Install locked dependencies
         run: npm ci
+
       - name: Type check
         run: npm run typecheck
+
       - name: Lint
         run: npm run lint
+
       - name: Production build
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: ${{ vars.PRODUCTION_SITE_URL || 'http://127.0.0.1:3000' }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.PRODUCTION_SITE_URL || 'https://www.fazhishengjing.cn' }}
 
-  image:
-    name: Publish immutable container image
-    needs: quality
-    if: vars.DEPLOY_ENABLED == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    outputs:
-      image: ${{ steps.image.outputs.image }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
+      - name: Upload static artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Resolve lowercase immutable image tag
-        id: image
-        shell: bash
-        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
-      - name: Build and push image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.image.outputs.image }}
-          build-args: |
-            NEXT_PUBLIC_SITE_URL=${{ vars.PRODUCTION_SITE_URL || 'http://127.0.0.1:3000' }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          path: out
 
-  deploy:
-    name: Deploy to prepared ECS host
-    needs: image
-    if: vars.DEPLOY_ENABLED == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    environment: production
-    steps:
-      - name: Configure SSH
-        shell: bash
-        env:
-          ECS_HOST: ${{ secrets.ECS_HOST }}
-          ECS_PORT: ${{ secrets.ECS_SSH_PORT }}
-          ECS_SSH_PRIVATE_KEY: ${{ secrets.ECS_SSH_PRIVATE_KEY }}
-        run: |
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$ECS_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "${ECS_PORT:-22}" -H "$ECS_HOST" >> ~/.ssh/known_hosts
-      - name: Pull image and restart application
-        shell: bash
-        env:
-          ECS_HOST: ${{ secrets.ECS_HOST }}
-          ECS_PORT: ${{ secrets.ECS_SSH_PORT }}
-          ECS_USER: ${{ secrets.ECS_USER }}
-          APP_DIR: ${{ vars.ECS_APP_DIR || '/opt/fazhi-shengjing' }}
-          APP_IMAGE: ${{ needs.image.outputs.image }}
-        run: |
-          ssh -p "${ECS_PORT:-22}" "$ECS_USER@$ECS_HOST" \
-            "cd '$APP_DIR' && APP_IMAGE='$APP_IMAGE' docker compose --env-file .env.production pull web && APP_IMAGE='$APP_IMAGE' docker compose --env-file .env.production up -d --no-build web && curl --fail --retry 10 --retry-delay 3 http://127.0.0.1:3000/api/health"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
