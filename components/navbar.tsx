@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
+import { SiteVisitCounter } from "@/components/site-visit-counter";
 import { navigation, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -66,6 +67,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SiteVisitCounter />
           <Link
             href="/knowledge"
             className="hidden h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-signal sm:flex"

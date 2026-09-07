@@ -54,6 +54,7 @@ npm run build
 | 变量 | 必填 | 说明 |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | 生产必填 | 对外访问地址，用于 Open Graph、robots、JSON-LD 和 sitemap |
+| `NEXT_PUBLIC_GOATCOUNTER_CODE` | 选填 | GoatCounter 站点标识，用于显示全站累计浏览量；未配置时显示 `—` |
 
 不要把 `.env.local` 提交到 Git。
 
@@ -68,7 +69,7 @@ npm run build
 - `.github/workflows/ci.yml`：在功能分支推送与 PR 时自动安装依赖、类型检查、Lint 和生产构建。
 - `.github/workflows/production.yml`：`main` 分支执行安装、检查、静态构建，并把 `out/` 发布到 GitHub Pages。
 
-准备正式部署时，建议在仓库变量中配置 `PRODUCTION_SITE_URL`，并在仓库 Pages 设置里选择 GitHub Actions 作为发布源。完整步骤见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
+准备正式部署时，建议在仓库变量中配置 `PRODUCTION_SITE_URL`；如需启用页面右上角的访问量，还应配置 `PRODUCTION_GOATCOUNTER_CODE`。在仓库 Pages 设置里选择 GitHub Actions 作为发布源。完整步骤见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
 
 ## 上线前核验清单
 

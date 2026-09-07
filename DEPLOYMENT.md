@@ -15,8 +15,11 @@
 | 类型 | 名称 | 用途 |
 | --- | --- | --- |
 | Repository variable | `PRODUCTION_SITE_URL` | 生产站点地址，用于 metadata、sitemap、robots 和 JSON-LD |
+| Repository variable | `PRODUCTION_GOATCOUNTER_CODE` | GoatCounter 站点标识，例如 `fazhi-shengjing`；用于在导航栏显示全站累计浏览量 |
 
 如果不配置 `PRODUCTION_SITE_URL`，生产 workflow 会默认使用 `https://www.fazhishengjing.cn`。
+
+`PRODUCTION_GOATCOUNTER_CODE` 可选；未配置时，访问量组件显示 `—`，网站其余功能不受影响。创建 GoatCounter 站点后，将其子域名中 `.goatcounter.com` 之前的部分填入该变量即可。
 
 ## 2. 自定义域名
 
