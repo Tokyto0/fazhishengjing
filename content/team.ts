@@ -30,17 +30,23 @@ export const teamGroups: TeamGroup[] = [
     responsibility: "平台搭建、技术架构与信息整合",
     members: [
       { name: "王奕皓", major: "计算机科学", contribution: "负责“法智生境”网站前期搭建与技术实现，参与项目整体框架梳理及信息架构设计；赴黑龙江省等多个公共机构开展参访调研，为项目技术应用场景与平台功能设计提供实践素材。" },
-      { name: "王浩辰", major: "计算机科学", contribution: "负责“法智生境”网站前期搭建与技术实现，参与项目整体框架梳理及信息架构设计；赴黑龙江省等多个公共机构开展参访调研，为项目技术应用场景与平台功能设计提供实践素材。" },
+      { name: "王浩辰", major: "计算机科学" },
     ],
     reflection: "让技术成为连接知识、实践与公众的桥梁。",
     reflectionLabel: "团队寄语",
+  },
+  {
+    role: "资料与政策研究",
+    responsibility: "文献资料整理、项目文本完善与成果校核",
+    members: [{ name: "王柯涵", major: "法学", contribution: "参与项目相关论文、政策及理论资料的搜集、整理与归纳，为项目研究框架和理论论证提供资料支持；参与后期项目书修改、文字校核与成果完善，协助提升项目成果的规范性与完整性。" }],
+    reflection: "扎实的资料积累，是让每一个研究判断经得起检验的基础。",
   },
   {
     role: "视觉传播组",
     responsibility: "成果整理、视觉设计与品牌传播",
     members: [
       { name: "尹坚卓玛", major: "法学", contribution: "负责项目问题清单梳理与汇报 PPT 制作。" },
-      { name: "张鸿茹", major: "政治学与公共管理", contribution: "负责项目展示 PPT 制作、成果归纳与视觉结构优化。" },
+      { name: "张湄蘅", major: "政治学与公共管理", contribution: "负责项目展示 PPT 制作、成果归纳与视觉结构优化。" },
       { name: "刘晓宇", major: "生命科学", contribution: "负责项目后期海报、队徽及宣传视觉设计。" },
     ],
     reflection: "专业成果不仅要做得扎实，也要让更多人看得懂、记得住。",
