@@ -14,13 +14,13 @@ export function Footer() {
               <BrandMark className="bg-white text-ocean" />
               <div>
                 <p className="font-display text-xl font-bold tracking-wider">法智生境</p>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-blue-200">Practice for public good</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-200">Practice for public good</p>
               </div>
             </div>
             <p className="text-balance text-lg leading-8 text-slate-300">{siteConfig.slogan}</p>
           </div>
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">探索平台</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">探索平台</p>
             <div className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm text-slate-300 lg:grid-cols-1">
               {navigation.slice(0, 6).map((item) => (
                 <Link key={item.href} href={item.href} className="transition hover:text-white">
@@ -30,7 +30,7 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">联系与共建</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">联系与共建</p>
             <div className="space-y-4 text-sm text-slate-300">
               <p className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-mint" />“三晖同尘”实践团</p>
               <Link href="/about" className="inline-flex items-center gap-1 text-white">了解项目 <ArrowUpRight className="h-4 w-4" /></Link>

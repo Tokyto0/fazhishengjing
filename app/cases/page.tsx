@@ -18,7 +18,7 @@ export default function CasesPage() {
     <PageTransition>
       <header className="relative overflow-hidden border-b border-slate-200 bg-mist pt-[76px]">
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(14,165,233,0.14),transparent_32%),radial-gradient(circle_at_18%_82%,rgba(16,185,129,0.10),transparent_30%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(22,163,74,0.14),transparent_32%),radial-gradient(circle_at_18%_82%,rgba(16,185,129,0.10),transparent_30%)]"
           aria-hidden="true"
         />
         <div className="container-page relative py-14 sm:py-20">
@@ -50,7 +50,7 @@ export default function CasesPage() {
                   <div key={section.slug} className="h-full min-w-0">
                     <Link
                       href={`/cases/${section.slug}`}
-                      className="group flex h-full min-h-48 min-w-0 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4 sm:p-7"
+                      className="group flex h-full min-h-48 min-w-0 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4 sm:p-7"
                     >
                       <span className="font-mono text-xs font-semibold tracking-[0.18em] text-slate-400">
                         {String(section.order).padStart(2, "0")}
@@ -76,4 +76,3 @@ export default function CasesPage() {
     </PageTransition>
   );
 }
-

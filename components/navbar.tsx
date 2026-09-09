@@ -70,7 +70,7 @@ export function Navbar() {
           <SiteVisitCounter />
           <Link
             href="/knowledge"
-            className="hidden h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-signal sm:flex"
+            className="hidden h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-600 transition hover:border-emerald-300 hover:text-signal sm:flex"
           >
             <Search className="h-4 w-4" />
             检索知识
@@ -108,7 +108,7 @@ export function Navbar() {
                     href={item.href}
                     className={cn(
                       "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium",
-                      active ? "bg-blue-50 text-signal" : "bg-slate-50 text-slate-700",
+                      active ? "bg-emerald-50 text-signal" : "bg-slate-50 text-slate-700",
                     )}
                   >
                     <Icon className="h-4 w-4" />

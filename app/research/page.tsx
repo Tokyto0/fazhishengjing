@@ -21,12 +21,12 @@ export default function ResearchPage() {
         <div className="container-page">
           <Reveal><SectionHeading eyebrow="Timeline" title="沿着时间，回到问题发生的现场" description="每个节点同时保存地点、任务、观察与产出，使社会实践不止是一组照片，而是一条完整的研究证据链。" /></Reveal>
           <div className="relative mt-14">
-            <div className="absolute bottom-0 left-[19px] top-0 w-px bg-gradient-to-b from-signal via-blue-200 to-transparent lg:left-1/2" />
+            <div className="absolute bottom-0 left-[19px] top-0 w-px bg-gradient-to-b from-signal via-emerald-200 to-transparent lg:left-1/2" />
             <div className="space-y-8 lg:space-y-12">
               {researchStops.map((stop, index) => (
                 <Reveal key={stop.id} delay={index * .04}>
                   <article className={`relative grid lg:grid-cols-2 lg:gap-16 ${index % 2 ? "" : "lg:[&>div:first-child]:col-start-2"}`}>
-                    <span className="absolute left-[12px] top-7 z-10 grid h-4 w-4 place-items-center rounded-full border-4 border-mist bg-signal ring-2 ring-blue-200 lg:left-1/2 lg:-translate-x-1/2" />
+                    <span className="absolute left-[12px] top-7 z-10 grid h-4 w-4 place-items-center rounded-full border-4 border-mist bg-signal ring-2 ring-emerald-200 lg:left-1/2 lg:-translate-x-1/2" />
                     <div className={`ml-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:ml-0 ${index % 2 ? "lg:col-start-2" : "lg:row-start-1"}`}>
                       <div className="flex items-center justify-between gap-4 text-xs"><span className="font-semibold text-signal">{stop.province} · {stop.city}</span><time className="shrink-0 text-slate-400">{stop.date ? formatDate(stop.date) : "时间待补充"}</time></div>
                       <h3 className="mt-4 font-display text-2xl font-bold text-ink">{stop.title}</h3>

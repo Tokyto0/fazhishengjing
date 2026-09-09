@@ -46,7 +46,7 @@ export default function AboutPage() {
             return (
               <Reveal key={value.title} delay={index * 0.05}>
                 <div className="h-full rounded-2xl border border-slate-200 bg-white p-7">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-signal"><Icon className="h-5 w-5" /></span>
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-signal"><Icon className="h-5 w-5" /></span>
                   <h3 className="mt-6 font-display text-2xl font-bold">{value.title}</h3>
                   <p className="mt-3 leading-7 text-slate-600">{value.text}</p>
                 </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
           <div className="rounded-3xl bg-ocean p-9 text-white sm:p-14">
             <BookOpenCheck className="h-8 w-8 text-mint" />
             <h2 className="mt-6 font-display text-3xl font-bold">从这里继续探索</h2>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-blue-100">阅读五省区调研档案，或从知识库中找到一份马上可以使用的指南。</p>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-emerald-100">阅读五省区调研档案，或从知识库中找到一份马上可以使用的指南。</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/research" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-ocean">查看调研纪实 <ArrowRight className="h-4 w-4" /></Link>
               <Link href="/knowledge" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white">进入知识库</Link>

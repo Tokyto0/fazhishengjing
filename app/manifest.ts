@@ -9,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "聚焦农文旅融合、知识产权保护与人工智能赋能的社会实践成果平台。",
     start_url: "/",
     display: "standalone",
-    background_color: "#f3f7fb",
-    theme_color: "#071426",
+    background_color: "#f1f7f2",
+    theme_color: "#155b3a",
     lang: "zh-CN",
     icons: [
       {

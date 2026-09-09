@@ -45,7 +45,7 @@ export default async function CaseDetailPage({
       <article className="bg-white pt-[76px]">
         <header className="relative overflow-hidden border-b border-slate-200 bg-mist">
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.13),transparent_32%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(22,163,74,0.13),transparent_32%)]"
             aria-hidden="true"
           />
           <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
@@ -139,4 +139,3 @@ export default async function CaseDetailPage({
     </PageTransition>
   );
 }
-

@@ -5,7 +5,7 @@
 :root {
   --font-sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
-  --ink: #071426;
+  --ink: #10271d;
 }
 
 * {
@@ -26,11 +26,11 @@ body {
 
 ::selection {
   color: #ffffff;
-  background: #126fce;
+  background: #17875f;
 }
 
 :focus-visible {
-  outline: 3px solid rgba(22, 135, 255, 0.35);
+  outline: 3px solid rgba(23, 135, 95, 0.35);
   outline-offset: 3px;
 }
 
@@ -52,7 +52,7 @@ body {
   }
 
   .button-primary {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-950/15 transition duration-300 hover:-translate-y-0.5 hover:bg-signal hover:shadow-glow;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ocean px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/15 transition duration-300 hover:-translate-y-0.5 hover:bg-signal hover:shadow-glow;
   }
 
   .button-secondary {

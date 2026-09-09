@@ -10,22 +10,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#071426",
-        ocean: "#0b3261",
-        signal: "#1687ff",
-        mint: "#20c997",
-        mist: "#f3f7fb",
+        ink: "#10271d",
+        ocean: "#155b3a",
+        signal: "#17875f",
+        mint: "#76c893",
+        mist: "#f1f7f2",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "PingFang SC", "Microsoft YaHei", "sans-serif"],
         display: ["var(--font-display)", "STKaiti", "KaiTi", "serif"],
       },
       boxShadow: {
-        soft: "0 20px 60px rgba(7, 20, 38, 0.08)",
-        glow: "0 0 50px rgba(22, 135, 255, 0.18)",
+        soft: "0 20px 60px rgba(16, 39, 29, 0.08)",
+        glow: "0 0 50px rgba(23, 135, 95, 0.18)",
       },
       backgroundImage: {
-        grid: "linear-gradient(rgba(22,135,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(22,135,255,.07) 1px, transparent 1px)",
+        grid: "linear-gradient(rgba(23,135,95,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(23,135,95,.07) 1px, transparent 1px)",
       },
     },
   },

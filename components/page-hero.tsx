@@ -4,7 +4,7 @@ export function PageHero({ eyebrow, title, description, aside }: { eyebrow: stri
   return (
     <section className="relative overflow-hidden border-b border-slate-200 bg-mist pt-[76px]">
       <div className="absolute inset-0 bg-grid bg-[length:48px_48px] [mask-image:linear-gradient(to_right,black,transparent_90%)]" />
-      <div className="absolute -right-36 top-10 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl" />
+      <div className="absolute -right-36 top-10 h-96 w-96 rounded-full bg-emerald-200/40 blur-3xl" />
       <div className="relative mx-auto grid min-h-[430px] max-w-7xl items-end gap-10 px-5 pb-16 pt-20 sm:px-8 lg:grid-cols-[1fr_.5fr] lg:pb-20">
         <div className="hero-enter">
           <div className="mb-5 flex items-center gap-3">
