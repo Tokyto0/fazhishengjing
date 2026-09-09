@@ -68,5 +68,7 @@ export interface TeamMember {
   major: string;
   role: string;
   responsibility: string;
+  contribution: string;
   reflection: string;
+  reflectionLabel?: "实践感言" | "团队寄语";
 }
