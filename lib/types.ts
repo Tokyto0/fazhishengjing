@@ -66,9 +66,13 @@ export interface PolicySection {
 export interface TeamMember {
   name: string;
   major: string;
+  contribution: string;
+}
+
+export interface TeamGroup {
   role: string;
   responsibility: string;
-  contribution: string;
+  members: TeamMember[];
   reflection: string;
   reflectionLabel?: "实践感言" | "团队寄语";
 }
